@@ -1,0 +1,49 @@
+# WireGuard Client Configuration Template
+# For New York-based VPN client
+# Save as /etc/wireguard/wg0.conf
+
+[Interface]
+# Client private key (generate with: wg genkey)
+PrivateKey = <CLIENT_PRIVATE_KEY>
+
+# Client IP address in VPN network
+Address = 10.0.0.2/24
+
+# DNS servers to use (optional)
+DNS = 8.8.8.8, 1.1.1.1
+
+# Optional: Set MTU (test different values: 1420, 1440, 1460, 1480, 1500)
+# MTU = 1420
+
+# Optional: Table for routing (default: auto)
+# Table = off
+
+# Optional: PreUp and PostUp scripts for additional configuration
+# PreUp = 
+# PostUp = 
+
+# Optional: PreDown and PostDown scripts for cleanup
+# PreDown = 
+# PostDown = 
+
+[Peer]
+# Chicago Server
+PublicKey = <SERVER_PUBLIC_KEY>
+
+# Server endpoint (Chicago server public IP and port)
+Endpoint = <CHICAGO_SERVER_IP>:51820
+
+# Allowed IPs (0.0.0.0/0 for all traffic, or specific subnets)
+AllowedIPs = 0.0.0.0/0
+
+# Keep connection alive (test different values: 15, 20, 25, 30, 60)
+PersistentKeepalive = 25
+
+# Optional: Route specific traffic only
+# AllowedIPs = 10.0.0.0/24, 192.168.1.0/24
+
+# Optional: Limit bandwidth (in bytes per second)
+# AllowedIPs = 0.0.0.0/0
+
+# Optional: Pre-shared key for additional security
+# PreSharedKey = <PRE_SHARED_KEY> 

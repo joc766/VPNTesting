@@ -1,0 +1,44 @@
+# WireGuard Server Configuration Template
+# For Chicago-based VPN server
+# Save as /etc/wireguard/wg0.conf
+
+[Interface]
+# Server private key (generate with: wg genkey)
+PrivateKey = <SERVER_PRIVATE_KEY>
+
+# Server IP address in VPN network
+Address = 10.0.0.1/24
+
+# Port to listen on (default WireGuard port)
+ListenPort = 51820
+
+# Optional: Set MTU (test different values: 1420, 1440, 1460, 1480, 1500)
+# MTU = 1420
+
+# Enable IP forwarding and NAT
+PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+
+# Optional: Save configuration when interface goes down
+SaveConfig = true
+
+# Client configurations
+# Add one [Peer] section for each client
+
+[Peer]
+# New York Client
+PublicKey = <CLIENT_PUBLIC_KEY>
+AllowedIPs = 10.0.0.2/32
+
+# Optional: Limit bandwidth (in bytes per second)
+# AllowedIPs = 10.0.0.2/32
+# PersistentKeepalive = 25
+
+# Optional: Additional clients
+# [Peer]
+# PublicKey = <CLIENT2_PUBLIC_KEY>
+# AllowedIPs = 10.0.0.3/32
+
+# [Peer]
+# PublicKey = <CLIENT3_PUBLIC_KEY>
+# AllowedIPs = 10.0.0.4/32 
