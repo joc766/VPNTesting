@@ -1,7 +1,7 @@
 # WireGuard VPN Performance Testing Framework
 
 ## Project Overview
-This project provides a comprehensive testing framework for evaluating WireGuard VPN performance across different network configurations and geographical locations.
+This project provides a testing framework for evaluating WireGuard VPN performance across different network configurations and geographical locations.
 
 ## Current Setup
 - **VPN Server**: Raspberry Pi running WireGuard service
